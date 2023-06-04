@@ -34,7 +34,11 @@ const generatePdfController = async (req, res) => {
     }
 
     const dirPath = path.join(currentDir, "/templates/assetPage.html");
+    sendDCMessage(`${JSON.stringify({ dirPath })}`);
+    console.log({ dirPath });
     const template = fs.readFileSync(dirPath, "utf8");
+    sendDCMessage(`${JSON.stringify({ template })}`);
+    console.log({ template });
     await generatePDF(templateData, template, fileName);
     res.status(200).json({
       success: true,
