@@ -5,13 +5,14 @@ import fs from "fs";
 import { sendDCMessage } from "./discord.js";
 import chromium from "@sparticuz/chromium";
 import puppeteerExtra from "puppeteer-extra";
+import stealthPlugin from "puppeteer-extra-plugin-stealth";
 
 export const generatePDF = async (data, template, fileName) => {
   try {
     const compiledTemplate = handlebars.compile(template);
     const html = compiledTemplate(data);
     const s3Key = `${fileName}.pdf`;
-
+    puppeteerExtra.use(stealthPlugin());
     const browser = await puppeteerExtra.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
