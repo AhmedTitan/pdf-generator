@@ -5,6 +5,7 @@ import path from "path";
 const generatePdfController = async (req, res) => {
   try {
     const { templateData, fileName } = req.body;
+    const currentDir = path.dirname(process.argv[1]);
 
     sendDCMessage(
       `templateData, fileName: ${JSON.stringify({
@@ -13,11 +14,13 @@ const generatePdfController = async (req, res) => {
       })}`
     );
     console.log({ templateData, fileName });
-    const currentDir = path.dirname(process.argv[1]);
-    console.log("Current directory:", currentDir);
+    console.log(
+      "Current directory:",
+      path.join(currentDir, "/templates/assetPage.html")
+    );
     sendDCMessage(
       `PATH: ${JSON.stringify({
-        path: url.fileURLToPath(new URL(".", import.meta.url)),
+        path: path.join(currentDir, "/templates/assetPage.html"),
       })}`
     );
 
@@ -56,7 +59,7 @@ const generatePdfController = async (req, res) => {
     // );
     await generatePDF(
       templateData,
-      path.join(__dirname, "../templates/assetPage.html"),
+      path.join(currentDir, "/templates/assetPage.html"),
       fileName
     );
     res.status(200).json({
