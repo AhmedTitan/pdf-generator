@@ -28,7 +28,7 @@
 import handlebars from "handlebars";
 import pdf from "html-pdf";
 import path from "path";
-import s3 from "./s3";
+import s3 from "./s3.js";
 
 export const generatePDF = async (data, template, fileName) => {
   return new Promise((resolve, reject) => {
