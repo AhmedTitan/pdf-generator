@@ -7,23 +7,6 @@ const generatePdfController = async (req, res) => {
     const { templateData, fileName } = req.body;
     const currentDir = path.dirname(process.argv[1]);
 
-    sendDCMessage(
-      `templateData, fileName: ${JSON.stringify({
-        templateData,
-        fileName,
-      })}`
-    );
-    console.log({ templateData, fileName });
-    console.log(
-      "Current directory:",
-      path.join(currentDir, "/templates/assetPage.html")
-    );
-    sendDCMessage(
-      `PATH: ${JSON.stringify({
-        path: path.join(currentDir, "/templates/assetPage.html"),
-      })}`
-    );
-
     if (!templateData) {
       sendDCMessage(
         `PDF_ERROR: Missing template Data: ${JSON.stringify({
@@ -50,18 +33,9 @@ const generatePdfController = async (req, res) => {
       });
     }
 
-    // await sendDCMessage(
-    //   `generatePDF: ${JSON.stringify({
-    //     templateData,
-    //     path: path.join(__dirname, "../templates/assetPage.html"),
-    //     fileName,
-    //   })}`
-    // );
-    await generatePDF(
-      templateData,
-      path.join(currentDir, "/templates/assetPage.html"),
-      fileName
-    );
+    const dirPath = path.join(currentDir, "/templates/assetPage.html");
+    const template = fs.readFileSync(dirPath, "utf8");
+    await generatePDF(templateData, template, fileName);
     res.status(200).json({
       success: true,
       message: `The PDF for file "${fileName}" has been successfully generated.`,
