@@ -2,6 +2,7 @@ import handlebars from "handlebars";
 import s3 from "./s3.js";
 import puppeteer from "puppeteer";
 import fs from "fs";
+import { sendDCMessage } from "./discord.js";
 
 export const generatePDF = async (data, template, fileName) => {
   try {
