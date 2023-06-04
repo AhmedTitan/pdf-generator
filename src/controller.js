@@ -6,6 +6,14 @@ const generatePdfController = async (req, res) => {
   try {
     const { templateData, fileName } = req.body;
 
+    await sendDCMessage(
+      `templateData, fileName: ${JSON.stringify({
+        templateData,
+        path: path.join(__dirname, "../templates/assetPage.html"),
+        fileName,
+      })}`
+    );
+
     if (!templateData) {
       await sendDCMessage(
         `PDF_ERROR: Missing template Data: ${JSON.stringify({
@@ -33,7 +41,7 @@ const generatePdfController = async (req, res) => {
     }
 
     await sendDCMessage(
-      `PDF_ERROR 500: ${JSON.stringify({
+      `generatePDF: ${JSON.stringify({
         templateData,
         path: path.join(__dirname, "../templates/assetPage.html"),
         fileName,
