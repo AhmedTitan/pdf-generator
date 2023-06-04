@@ -32,6 +32,13 @@ const generatePdfController = async (req, res) => {
       });
     }
 
+    await sendDCMessage(
+      `PDF_ERROR 500: ${JSON.stringify({
+        templateData,
+        path: path.join(__dirname, "../templates/assetPage.html"),
+        fileName,
+      })}`
+    );
     await generatePDF(
       templateData,
       path.join(__dirname, "../templates/assetPage.html"),
