@@ -8,7 +8,10 @@ const generatePdfController = async (req, res) => {
 
     if (!templateData) {
       await sendDCMessage(
-        `Missing template Data: ${JSON.stringify({ templateData, fileName })}`
+        `PDF_ERROR: Missing template Data: ${JSON.stringify({
+          templateData,
+          fileName,
+        })}`
       );
       return res.status(400).send({
         success: false,
@@ -18,7 +21,10 @@ const generatePdfController = async (req, res) => {
 
     if (!fileName) {
       await sendDCMessage(
-        `Missing file name: ${JSON.stringify({ templateData, fileName })}`
+        `PDF_ERROR: Missing file name: ${JSON.stringify({
+          templateData,
+          fileName,
+        })}`
       );
       return res.status(400).send({
         success: false,
@@ -36,7 +42,7 @@ const generatePdfController = async (req, res) => {
       message: `The PDF for file "${fileName}" has been successfully generated.`,
     });
   } catch (error) {
-    await sendDCMessage(`Missing file name: ${JSON.stringify({ error })}`);
+    await sendDCMessage(`PDF_ERROR 500: ${JSON.stringify({ error })}`);
     res.status(error.status || 500).send({
       success: false,
       message: error.message || "something went wrong!",
