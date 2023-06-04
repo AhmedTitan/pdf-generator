@@ -10,6 +10,6 @@ export const sendDCMessage = async (message) => {
       content: message,
     });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };

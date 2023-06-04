@@ -5,7 +5,7 @@ import fs from "fs";
 
 export const generatePDF = async (data, template, fileName) => {
   try {
-    await sendDCMessage(
+    sendDCMessage(
       `Executing PDF GENERATOR: ${JSON.stringify({ data, template, fileName })}`
     );
     const compiledTemplate = handlebars.compile(template);
