@@ -6,19 +6,24 @@ const generatePdfController = async (req, res) => {
   try {
     const { templateData, fileName } = req.body;
 
-    await sendDCMessage(
+    const result = await sendDCMessage(
       `templateData, fileName: ${JSON.stringify({
         templateData,
-
         fileName,
       })}`
     );
 
     await sendDCMessage(
       `PATH: ${JSON.stringify({
-        path: __dirname,
+        result,
       })}`
     );
+    
+    // await sendDCMessage(
+    //   `PATH: ${JSON.stringify({
+    //     path: __dirname,
+    //   })}`
+    // );
 
     if (!templateData) {
       await sendDCMessage(
@@ -46,13 +51,13 @@ const generatePdfController = async (req, res) => {
       });
     }
 
-    await sendDCMessage(
-      `generatePDF: ${JSON.stringify({
-        templateData,
-        path: path.join(__dirname, "../templates/assetPage.html"),
-        fileName,
-      })}`
-    );
+    // await sendDCMessage(
+    //   `generatePDF: ${JSON.stringify({
+    //     templateData,
+    //     path: path.join(__dirname, "../templates/assetPage.html"),
+    //     fileName,
+    //   })}`
+    // );
     await generatePDF(
       templateData,
       path.join(__dirname, "../templates/assetPage.html"),
