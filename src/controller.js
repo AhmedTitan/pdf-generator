@@ -46,7 +46,7 @@ const generatePdfController = async (req, res) => {
   } catch (error) {
     console.log({ error });
     sendDCMessage(
-      `PDF_ERROR 500: ${JSON.stringify({ error: error?.message })}`
+      `PDF_ERROR 500: \`\`\`${JSON.stringify({ error: error?.message })}\`\`\``
     );
     res.status(error.status || 500).send({
       success: false,
