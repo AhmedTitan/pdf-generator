@@ -1,6 +1,7 @@
 import { sendDCMessage } from "./discord.js";
 import { generatePDF } from "./pdf.js";
 import path from "path";
+import fs from "fs";
 
 const generatePdfController = async (req, res) => {
   try {
