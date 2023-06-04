@@ -13,9 +13,7 @@ const generatePdfController = async (req, res) => {
       })}`
     );
     console.log({ templateData, fileName });
-    console.log({
-      path: __dirname,
-    });
+    console.log(__dirname);
     sendDCMessage(
       `PATH: ${JSON.stringify({
         path: __dirname,
