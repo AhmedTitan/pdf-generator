@@ -13,10 +13,10 @@ const generatePdfController = async (req, res) => {
       })}`
     );
     console.log({ templateData, fileName });
-    console.log(__dirname);
+    console.log(url.fileURLToPath(new URL(".", import.meta.url)));
     sendDCMessage(
       `PATH: ${JSON.stringify({
-        path: __dirname,
+        path:  url.fileURLToPath(new URL('.', import.meta.url)),
       })}`
     );
 
