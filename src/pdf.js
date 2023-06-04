@@ -4,6 +4,7 @@ import puppeteer from "puppeteer";
 import fs from "fs";
 import { sendDCMessage } from "./discord.js";
 import chromium from "@sparticuz/chromium";
+import puppeteerExtra from "puppeteer-extra";
 
 export const generatePDF = async (data, template, fileName) => {
   try {
@@ -11,7 +12,7 @@ export const generatePDF = async (data, template, fileName) => {
     const html = compiledTemplate(data);
     const s3Key = `${fileName}.pdf`;
 
-    const browser = await puppeteer.launch({
+    const browser = await puppeteerExtra.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath(),
