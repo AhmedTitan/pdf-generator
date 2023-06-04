@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>file_1678370938910</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+      text-indent: 0;
+    }
+
+    body {
+      padding: 1rem 3rem;
+    }
+
+    p {
+      color: #0C8AD9;
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 14pt;
+      margin: 0pt;
+    }
+
+    .s1 {
+      color: #3F3F3F;
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 9pt;
+    }
+
+    .s2 {
+      color: #3F3F3F;
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: none;
+      font-size: 9pt;
+    }
+
+    table,
+    tbody {
+      vertical-align: top;
+      overflow: visible;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .header-left {
+      max-height: 60px;
+    }
+
+    .header-text {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: black
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div>
+      <!-- <img class="header-left" src="{{logo}}" alt="Logo"> -->
+    </div>
+
+  </div>
+
+  <p style="padding-top: 5pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">{{projectName}}- PENETRATIONS RECORD
+  </p>
+  <p style="text-indent: 0pt;text-align: left;"><br /></p>
+  <table style="border-collapse:collapse;margin-left:6pt" cellspacing="0">
+    {{#each values}}
+    <tr style="height:19pt">
+      <td
+        style="width:149pt;border-top-style:solid;border-top-width:1pt;border-top-color:#D8D8D8;border-left-style:solid;border-left-width:1pt;border-left-color:#D8D8D8;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#D8D8D8;border-right-style:solid;border-right-width:1pt;border-right-color:#D8D8D8"
+        bgcolor="#F4F4F4">
+        <p class="s1" style="padding-top: 5pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">
+          {{label}}
+        </p>
+      </td>
+      <td
+        style="width:346pt;border-top-style:solid;border-top-width:1pt;border-top-color:#D8D8D8;border-left-style:solid;border-left-width:1pt;border-left-color:#D8D8D8;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#D8D8D8;border-right-style:solid;border-right-width:1pt;border-right-color:#D8D8D8">
+        <p class="s2" style="padding-top: 5pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">
+          {{value}}
+        </p>
+      </td>
+    </tr>
+    {{/each}}
+
+    {{#each formValues}}
+    <tr style="height:19pt">
+      <td
+        style="width:149pt;border-top-style:solid;border-top-width:1pt;border-top-color:#D8D8D8;border-left-style:solid;border-left-width:1pt;border-left-color:#D8D8D8;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#D8D8D8;border-right-style:solid;border-right-width:1pt;border-right-color:#D8D8D8"
+        bgcolor="#F4F4F4">
+        <p class="s1" style="padding-top: 5pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">
+          {{label}}
+        </p>
+      </td>
+      <td
+        style="width:346pt;border-top-style:solid;border-top-width:1pt;border-top-color:#D8D8D8;border-left-style:solid;border-left-width:1pt;border-left-color:#D8D8D8;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#D8D8D8;border-right-style:solid;border-right-width:1pt;border-right-color:#D8D8D8">
+        <p class="s2" style="padding-top: 5pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">
+          {{value}}
+        </p>
+      </td>
+    </tr>
+    {{/each}}
+
+    <tr style="height:228pt">
+      <td
+        style="width:149pt;border-top-style:solid;border-top-width:1pt;border-top-color:#D8D8D8;border-left-style:solid;border-left-width:1pt;border-left-color:#D8D8D8;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#D8D8D8;border-right-style:solid;border-right-width:1pt;border-right-color:#D8D8D8"
+        bgcolor="#F4F4F4">
+        <p class="s1" style="padding-top: 5pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">PHOTOS</p>
+      </td>
+      <td
+        style="width:346pt;border-top-style:solid;border-top-width:1pt;border-top-color:#D8D8D8;border-left-style:solid;border-left-width:1pt;border-left-color:#D8D8D8;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#D8D8D8;border-right-style:solid;border-right-width:1pt;border-right-color:#D8D8D8">
+        <p style="text-indent: 0pt;text-align: left;"><span>
+            <table border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td style="padding: 5px;">
+                  {{#each images}}
+                  <img src="data:image/png;base64, {{this}}" width="200" height="200"
+                    style="object-fit: cover; object-position: center;">
+                  {{/each}}
+                </td>
+              </tr>
+            </table>
+          </span></p>
+      </td>
+    </tr>
+  </table>
+
+</body>
+
+</html>
