@@ -6,9 +6,6 @@ import { sendDCMessage } from "./discord.js";
 
 export const generatePDF = async (data, template, fileName) => {
   try {
-    sendDCMessage(
-      `Executing PDF GENERATOR: ${JSON.stringify({ data, fileName })}`
-    );
     const compiledTemplate = handlebars.compile(template);
     const html = compiledTemplate(data);
     const s3Key = `${fileName}.pdf`;
