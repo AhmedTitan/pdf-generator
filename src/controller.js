@@ -16,7 +16,7 @@ const generatePdfController = async (req, res) => {
 
     await sendDCMessage(
       `PATH: ${JSON.stringify({
-        path: path.join(__dirname, "../templates/assetPage.html"),
+        path: __dirname,
       })}`
     );
 
