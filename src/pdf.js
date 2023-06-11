@@ -30,8 +30,10 @@ export const generatePDF = async (data, template, fileName) => {
     console.log({ message: "page content added" });
     await page.pdf({ path: s3Key, format: "A4" });
     console.log({ message: "page format set to a4" });
-    await browser.close();
+    browser.close();
     console.log({ message: "browser closed" });
+    await browser.process()?.kill();
+    console.log({ message: "browser precess killed" });
     const buffer = fs.readFileSync(s3Key);
     console.log({ message: "file buffer" });
     const file = await s3.uploadFile(s3Key, buffer);
