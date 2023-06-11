@@ -29,7 +29,9 @@ export const generatePDF = async (data, template, fileName) => {
     fs.unlinkSync(s3Key);
     return Promise.resolve(file);
   } catch (error) {
-    await sendDCMessage(`PDF_GENERATOR_ERROR: ${JSON.stringify({ error })}`);
+    sendDCMessage(
+      `PDF_GENERATOR_ERROR: \`\`\`${JSON.stringify({ error })}\`\`\``
+    );
     return Promise.reject(error);
   }
 };

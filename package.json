@@ -22,7 +22,7 @@
     "handlebars": "^4.7.7",
     "html-pdf": "^3.0.1",
     "morgan": "^1.10.0",
-    "puppeteer": "^20.5.0",
+    "puppeteer": "^19.6.0",
     "puppeteer-core": "19.6",
     "puppeteer-extra": "^3.3.4",
     "puppeteer-extra-plugin-stealth": "^2.11.1"
