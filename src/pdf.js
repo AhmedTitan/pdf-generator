@@ -32,6 +32,7 @@ export const generatePDF = async (data, template, fileName) => {
     fs.unlinkSync(s3Key);
     return Promise.resolve(file);
   } catch (error) {
+    fs.unlinkSync(s3Key);
     return Promise.reject(error);
   }
 };
