@@ -2,7 +2,6 @@ import handlebars from "handlebars";
 import s3 from "./s3.js";
 import puppeteer from "puppeteer";
 import fs from "fs";
-import { sendDCMessage } from "./discord.js";
 import chromium from "@sparticuz/chromium";
 import puppeteerExtra from "puppeteer-extra";
 import stealthPlugin from "puppeteer-extra-plugin-stealth";
@@ -11,6 +10,8 @@ export const generatePDF = async (data, template, fileName) => {
   try {
     const compiledTemplate = handlebars.compile(template);
 
+    const bufferImages = fetchAndConvertImages(data.images);
+    data.images = bufferImages;
     const html = compiledTemplate(data);
     const s3Key = `${fileName}.pdf`;
     puppeteerExtra.use(stealthPlugin());
@@ -31,29 +32,17 @@ export const generatePDF = async (data, template, fileName) => {
     fs.unlinkSync(s3Key);
     return Promise.resolve(file);
   } catch (error) {
-    sendDCMessage(
-      `PDF_GENERATOR_ERROR: \`\`\`${JSON.stringify({ error })}\`\`\``
-    );
     return Promise.reject(error);
   }
 };
 
-// import handlebars from "handlebars";
-// import pdf from "html-pdf";
-// import path from "path";
-// import s3 from "./s3.js";
-
-// export const generatePDF = async (data, template, fileName) => {
-//   return new Promise((resolve, reject) => {
-//     const compiledTemplate = handlebars.compile(template);
-//     const html = compiledTemplate(data);
-
-//     return pdf.create(html).toBuffer(async function (err, buffer) {
-//       if (err) return reject(err);
-
-//       const s3Key = `${fileName}.pdf`;
-//       const file = await s3.uploadFile(s3Key, buffer);
-//       return resolve(file);
-//     });
-//   });
-// };
+const fetchAndConvertImages = async (assetImages) => {
+  const bufferImagesPromises = assetImages.map(async (image) => {
+    const data = await s3.getFile(image.imageKey || "");
+    if (data && !isEmpty(data)) {
+      return Buffer.from(data.Body).toString("base64");
+    }
+  });
+  const bufferImages = await Promise.all(bufferImagesPromises);
+  return bufferImages.filter(Boolean);
+};
