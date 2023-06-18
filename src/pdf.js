@@ -10,7 +10,7 @@ export const generatePDF = async (data, template, fileName) => {
   try {
     const compiledTemplate = handlebars.compile(template);
 
-    const bufferImages = fetchAndConvertImages(data.images);
+    const bufferImages = await fetchAndConvertImages(data.images);
     data.images = bufferImages;
     const html = compiledTemplate(data);
     const s3Key = `${fileName}.pdf`;
