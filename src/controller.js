@@ -37,11 +37,12 @@ const generatePdfController = async (req, res) => {
     const dirPath = path.join(currentDir, "/templates/assetPage.html");
 
     const template = fs.readFileSync(dirPath, "utf8");
-    console.log('Generating PDF')
-    await generatePDF(templateData, template, fileName);
+    console.log(`Generating PDF: ${fileName}`);
+    const file = await generatePDF(templateData, template, fileName);
     res.status(200).json({
       success: true,
       message: `The PDF for file "${fileName}" has been successfully generated.`,
+      file,
     });
   } catch (error) {
     console.log({ error });
