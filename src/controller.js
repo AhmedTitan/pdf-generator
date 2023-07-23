@@ -42,6 +42,7 @@ const generatePdfController = async (req, res) => {
       templateData,
       fileName,
     });
+    console.log(templateData.images);
     const file = await generatePDF(templateData, template, fileName);
     res.status(200).json({
       success: true,
