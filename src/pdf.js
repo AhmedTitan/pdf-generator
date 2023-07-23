@@ -41,7 +41,10 @@ const fetchAndConvertImages = async (assetImages) => {
   const bufferImagesPromises = assetImages.map(async (image) => {
     const data = await s3.getFile(image.imageKey || "");
     if (data && !isEmpty(data)) {
-      return Buffer.from(data.Body).toString("base64");
+      return {
+        imageKey: Buffer.from(data.Body).toString("base64"),
+        label: image.label,
+      };
     }
   });
   const bufferImages = await Promise.all(bufferImagesPromises);
