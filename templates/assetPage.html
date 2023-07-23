@@ -77,7 +77,8 @@
 
   </div>
 
-  <p style="padding-top: 5pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">{{projectName}}- PENETRATIONS RECORD
+  <p style="padding-top: 5pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">{{projectName}}-{{assetId}}
+    PENETRATIONS RECORD
   </p>
   <p style="text-indent: 0pt;text-align: left;"><br /></p>
   <table style="border-collapse:collapse;margin-left:6pt" cellspacing="0">
@@ -130,8 +131,12 @@
               <tr>
                 <td style="padding: 5px;">
                   {{#each images}}
-                  <img src="data:image/png;base64, {{this}}" width="200" height="200"
-                    style="object-fit: cover; object-position: center;">
+
+                  <div style="text-align: center; margin-bottom:15px;">
+                    <img src="data:image/png;base64, {{imageKey}}" width="200" height="200"
+                      style="object-fit: cover; object-position: center;">
+                    <p class="s1">{{label}}</p>
+                  </div>
                   {{/each}}
                 </td>
               </tr>
