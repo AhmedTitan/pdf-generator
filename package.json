@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --max-old-space-size=16384 app.js",
-    "start": "npm copy-template || echo 'invalid location' && app.js",
-    "copy-template": "cp '/templates/assetPage.html' '/usr/local/lib/node_modules/pm2/lib/templates/assetPage.html'"
+    "start": "npm run copy-template || echo 'invalid location' && app.js",
+    "copy-template": "cp 'templates/assetPage.html' '/usr/local/lib/node_modules/pm2/lib/templates/assetPage.html'"
   },
   "author": "",
   "license": "ISC",
