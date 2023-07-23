@@ -38,6 +38,10 @@ const generatePdfController = async (req, res) => {
 
     const template = fs.readFileSync(dirPath, "utf8");
     console.log(`Generating PDF: ${fileName}`);
+    console.log({
+      templateData,
+      fileName,
+    });
     const file = await generatePDF(templateData, template, fileName);
     res.status(200).json({
       success: true,
