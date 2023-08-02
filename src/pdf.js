@@ -44,10 +44,11 @@ const fetchAndConvertImages = async (assetImages) => {
     if (data && !isEmpty(data)) {
       const buffer = Buffer.from(data.Body).toString("base64")
       return {
-        imageKey: await sharp(buffer)
-          .jpeg({ mozjpeg: true })
-          .rotate()
-          .toBuffer(),
+        imageKey: buffer,
+        // imageKey: await sharp(buffer)
+        //   .jpeg({ mozjpeg: true })
+        //   .rotate()
+        //   .toBuffer(),
         label: image.label,
       };
     }
