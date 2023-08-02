@@ -1,10 +1,10 @@
 import handlebars from "handlebars";
 import s3 from "./s3.js";
-import puppeteer from "puppeteer";
 import fs from "fs";
 import chromium from "@sparticuz/chromium";
 import puppeteerExtra from "puppeteer-extra";
 import stealthPlugin from "puppeteer-extra-plugin-stealth";
+import sharp from "sharp";
 
 export const generatePDF = async (data, template, fileName) => {
   try {
@@ -26,6 +26,7 @@ export const generatePDF = async (data, template, fileName) => {
     await page.setContent(html);
     await page.pdf({ path: s3Key, format: "A4" });
     browser.close();
+
     await browser.process()?.kill();
     const buffer = fs.readFileSync(s3Key);
     const file = await s3.uploadFile(s3Key, buffer);
@@ -42,7 +43,10 @@ const fetchAndConvertImages = async (assetImages) => {
     const data = await s3.getFile(image.imageKey || "");
     if (data && !isEmpty(data)) {
       return {
-        imageKey: Buffer.from(data.Body).toString("base64"),
+        imageKey: await sharp(Buffer.from(data.Body).toString("base64"))
+          .jpeg({ mozjpeg: true })
+          .rotate()
+          .toBuffer(),
         label: image.label,
       };
     }
