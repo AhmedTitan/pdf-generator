@@ -4,7 +4,7 @@ import fs from "fs";
 import chromium from "@sparticuz/chromium";
 import puppeteerExtra from "puppeteer-extra";
 import stealthPlugin from "puppeteer-extra-plugin-stealth";
-import * as sharp from "sharp";
+import sharp from "sharp";
 
 
 export const generatePDF = async (data, template, fileName) => {
@@ -34,7 +34,7 @@ export const generatePDF = async (data, template, fileName) => {
     fs.unlinkSync(s3Key);
     return Promise.resolve(file);
   } catch (error) {
-    fs.unlink(s3Key);
+    // fs.unlink(s3Key);
     return Promise.reject(error);
   }
 };
