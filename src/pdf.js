@@ -42,8 +42,9 @@ const fetchAndConvertImages = async (assetImages) => {
   const bufferImagesPromises = assetImages.map(async (image) => {
     const data = await s3.getFile(image.imageKey || "");
     if (data && !isEmpty(data)) {
+      const buffer = Buffer.from(data.Body).toString("base64")
       return {
-        imageKey: await sharp(Buffer.from(data.Body).toString("base64"))
+        imageKey: await sharp(buffer)
           .jpeg({ mozjpeg: true })
           .rotate()
           .toBuffer(),
