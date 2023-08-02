@@ -7,13 +7,13 @@ import stealthPlugin from "puppeteer-extra-plugin-stealth";
 import sharp from "sharp";
 
 export const generatePDF = async (data, template, fileName) => {
+  const s3Key = `${fileName}.pdf`;
   try {
     const compiledTemplate = handlebars.compile(template);
 
     const bufferImages = await fetchAndConvertImages(data.images);
     data.images = bufferImages;
     const html = compiledTemplate(data);
-    const s3Key = `${fileName}.pdf`;
     puppeteerExtra.use(stealthPlugin());
     const browser = await puppeteerExtra.launch({
       args: chromium.args,
