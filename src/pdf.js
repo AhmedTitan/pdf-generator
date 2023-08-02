@@ -46,7 +46,7 @@ const fetchAndConvertImages = async (assetImages) => {
       // const buffer = Buffer.from(data.Body).toString("base64")
       const buffer = Buffer.from(data.Body)
       return {
-        imageKey: await sharp(buffer)
+        imageKey: await sharp(data.Body)
           .jpeg({ mozjpeg: true })
           .rotate()
           .toBuffer(),
