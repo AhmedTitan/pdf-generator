@@ -4,7 +4,8 @@ import fs from "fs";
 import chromium from "@sparticuz/chromium";
 import puppeteerExtra from "puppeteer-extra";
 import stealthPlugin from "puppeteer-extra-plugin-stealth";
-import sharp from "sharp";
+
+const sharp = required("sharp");
 
 export const generatePDF = async (data, template, fileName) => {
   const s3Key = `${fileName}.pdf`;
@@ -42,13 +43,12 @@ const fetchAndConvertImages = async (assetImages) => {
   const bufferImagesPromises = assetImages.map(async (image) => {
     const data = await s3.getFile(image.imageKey || "");
     if (data && !isEmpty(data)) {
-      const buffer = Buffer.from(data.Body).toString("base64")
+      const buffer = Buffer.from(data.Body).toString("base64");
       return {
-        imageKey: buffer,
-        // imageKey: await sharp(buffer)
-        //   .jpeg({ mozjpeg: true })
-        //   .rotate()
-        //   .toBuffer(),
+        imageKey: await sharp(buffer)
+          .jpeg({ mozjpeg: true })
+          .rotate()
+          .toBuffer(),
         label: image.label,
       };
     }
