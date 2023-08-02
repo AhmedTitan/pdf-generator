@@ -5,7 +5,7 @@ import chromium from "@sparticuz/chromium";
 import puppeteerExtra from "puppeteer-extra";
 import stealthPlugin from "puppeteer-extra-plugin-stealth";
 
-const sharp = required("sharp");
+const sharp = require("sharp");
 
 export const generatePDF = async (data, template, fileName) => {
   const s3Key = `${fileName}.pdf`;
