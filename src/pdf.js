@@ -47,8 +47,7 @@ const fetchAndConvertImages = async (assetImages) => {
       const buffer = Buffer.from(data.Body)
       return {
         imageKey: await sharp(data.Body)
-          .jpeg({ mozjpeg: true })
-          .rotate()
+          .jpeg({ quality: 80 })
           .toBuffer(),
         label: image.label,
       };
