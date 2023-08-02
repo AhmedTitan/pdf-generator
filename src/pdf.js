@@ -6,7 +6,6 @@ import puppeteerExtra from "puppeteer-extra";
 import stealthPlugin from "puppeteer-extra-plugin-stealth";
 import sharp from "sharp";
 
-
 export const generatePDF = async (data, template, fileName) => {
   const s3Key = `${fileName}.pdf`;
   try {
@@ -44,11 +43,11 @@ const fetchAndConvertImages = async (assetImages) => {
     const data = await s3.getFile(image.imageKey || "");
     if (data && !isEmpty(data)) {
       // const buffer = Buffer.from(data.Body).toString("base64")
-      const buffer = Buffer.from(data.Body)
+      const buffer = Buffer.from(data.Body);
       return {
-        imageKey: await sharp(data.Body)
-          .jpeg({ quality: 80 })
-          .toBuffer(),
+        imageKey: (
+          await sharp(data.Body).jpeg({ quality: 80 }).toBuffer()
+        ).toString("base64"),
         label: image.label,
       };
     }
